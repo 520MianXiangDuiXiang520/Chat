@@ -36,9 +36,6 @@ User* login::auth(QString uid, QString psw)
        if(lm->findWork(result) == 1)
        {
            lm->findData(result);
-           qDebug() << lm->Name;
-           qDebug() << lm->UID;
-           qDebug() << lm->Token;
            return new User(lm->UID, lm->Name);
        }
        else
