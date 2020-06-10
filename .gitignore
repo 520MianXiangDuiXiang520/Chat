@@ -1,0 +1,9 @@
+.idea/*
+.vs/*
+*.vcxproj
+*.vcxproj.*
+bin/*
+obj/*
+readme/*
+*.sln
+*.user.*
