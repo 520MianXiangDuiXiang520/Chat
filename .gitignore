@@ -1,0 +1,6 @@
+./utils.cpp
+.idea/*
+.idea
+.vs
+*.vcxproj
+*.vcxproj.*
