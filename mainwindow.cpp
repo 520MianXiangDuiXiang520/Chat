@@ -49,7 +49,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
+/**
+ * 登录
+ * @brief MainWindow::on_loginButton_clicked
+ */
 void MainWindow::on_loginButton_clicked()
 {
 
@@ -89,7 +92,19 @@ void MainWindow::on_againPSW_textEdited(const QString &arg1)
     this->againPSW = arg1;
 }
 
+/**
+ * 注册
+ * @brief MainWindow::on_registButton_clicked
+ */
 void MainWindow::on_registButton_clicked()
 {
-
+    User *u = Regist::auth(this->newUsername, this->newPSW, this->againPSW);
+    if(u)
+    {
+        qDebug()<<u->getUsername();
+    }
+    else
+    {
+        qDebug()<<"登陆失败！";
+    }
 }

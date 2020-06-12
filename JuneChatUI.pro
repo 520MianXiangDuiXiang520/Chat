@@ -21,6 +21,8 @@ SOURCES += \
     loginmessage.cpp \
     main.cpp \
     mainwindow.cpp \
+    regist.cpp \
+    registmessage.cpp \
     user.cpp \
     utils.cpp
 
@@ -28,6 +30,8 @@ HEADERS += \
     login.h \
     loginmessage.h \
     mainwindow.h \
+    regist.h \
+    registmessage.h \
     user.h \
     utils.h
 

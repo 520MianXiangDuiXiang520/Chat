@@ -5,6 +5,7 @@
 #include <QString>
 #include "login.h"
 #include "user.h"
+#include "regist.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

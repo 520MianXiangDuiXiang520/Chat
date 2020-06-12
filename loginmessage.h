@@ -9,10 +9,7 @@
 
 class LoginMessage
 {
-private:
-    int size = 0;
-    int len = 2;
-    static void setLenMessage(char *message, QString data, int offset);
+protected:
     void setType(char * message);
     void setWork(char * message, char workType);
     void setFrom(char * message, QString fromIP);
@@ -22,12 +19,17 @@ private:
     void setSize(char *message);
     QString findString(char *message);
     static QString getLenMessage(char *message, int offset);
+private:
+    int size = 0;
+    int len = 2;
+    static void setLenMessage(char *message, QString data, int offset);
 public:
     QString UID;
     QString Name;
     QString Token;
     LoginMessage();
-    void setData(char * message, int workType, QString fromIP, QString toIP, QString PSW, QString UID);
+    void setData(char * message, int workType, QString fromIP,
+                 QString toIP, QString PSW, QString UID);
     //char *getMessage();
     //QString getMessage();
     static int getType(char *message);
