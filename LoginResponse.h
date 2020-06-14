@@ -1,22 +1,18 @@
 #pragma once
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <iostream>
-#include <string>
-#include "Utils.h"
-#include "UserDB.h"
 #include "LoginResponseMessage.h"
+#include "User.h"
+#include "UserDB.h"
+#include "Utils.h"
 
-#define MAX_LOGIN_MESSAGE_LEN 128
 
 class LoginResponse
 {
 private:
-	void process_recv(int clnt_sock);
+	UserDB* udb = new UserDB();
 public:
 	LoginResponse();
 	~LoginResponse();
-	void response();
+	void login(std::string uid, std::string fromIP);
+	void response(int socket, LoginResponseMessage* lrm);
 };
 

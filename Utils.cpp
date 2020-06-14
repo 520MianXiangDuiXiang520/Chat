@@ -50,3 +50,8 @@ int Utils::conn()
 	printf("%d", &serv_sock);
 	return serv_sock;
 }
+
+void Utils::send(int socket, char* message)
+{
+	write(socket, message, strlen(message));
+}

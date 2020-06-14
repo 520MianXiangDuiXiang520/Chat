@@ -27,5 +27,6 @@ public:
 	~Utils();
 	static void errorHandling(std::string mes);
 	static int conn();
+	static void send(int socket, char* message);
 };
 
