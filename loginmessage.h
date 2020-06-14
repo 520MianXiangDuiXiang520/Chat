@@ -19,10 +19,11 @@ protected:
     void setSize(char *message);
     QString findString(char *message);
     static QString getLenMessage(char *message, int offset);
+    static void setLenMessage(char *message, QString data, int offset);
 private:
     int size = 0;
     int len = 2;
-    static void setLenMessage(char *message, QString data, int offset);
+
 public:
     QString UID;
     QString Name;
