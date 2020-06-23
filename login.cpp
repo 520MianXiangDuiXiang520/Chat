@@ -43,6 +43,6 @@ User* login::auth(QString uid, QString psw)
            qDebug() << "用户名或密码错误！";
        }
     }
-    close(socket);
+    //close(socket);
     return nullptr;
 }

@@ -23,13 +23,24 @@ User* Regist::auth(QString name, QString psw, QString apsw)
         write(socket, message, strlen(message));
         qDebug() << "发完了";
         char result[128];
-//        int resultLen = read(socket, result, 128 - 1);
-//        if(resultLen <= 0)
-//            qDebug() << "未收到服务器响应";
-//        else
-//            qDebug() << result;
+        int resultLen = read(socket, result, 128 - 1);
+        if(resultLen <= 0)
+            qDebug() << "未收到服务器响应";
+        else
+        {
+            // 解析响应
+           if(rm->findWork(result) == 3)
+           {
+               rm->findData(result);
+               return new User(rm->UID, rm->Name);
+           }
+           else
+           {
+               qDebug() << "用户名或密码错误！";
+           }
+        }
 
-        close(socket);
+//        close(socket);
         return nullptr;
     }
 
