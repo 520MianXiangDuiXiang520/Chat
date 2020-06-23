@@ -43,19 +43,15 @@ int main()
 				ResponseMessage* rm = new ResponseMessage();
 				char type = rm->getType(result);
 				int work = rm->getWork(result);
-				// 数据响应包
 				if (type == '0')
 				{
-					// 登录请求
 					if (work == 1)
 					{
 						LoginResponseMessage* lrm = new LoginResponseMessage();
 						lrm->getData(result);
-						// 响应
 						LoginResponse* lr = new LoginResponse();
 						lr->response(clnt_sock, lrm);
 					}
-					// 注册请求
 					else if (work == 2)
 					{
 						RegistResponseMessage* rrm = new RegistResponseMessage();

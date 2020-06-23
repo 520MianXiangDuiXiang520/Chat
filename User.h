@@ -6,18 +6,18 @@ using namespace std;
 class User
 {
 private:
-	int uid;
+	string uid;
 	string psw;
 	string name;
 	void setPSW(string psw);
 	string getPSW();
 public:
-	User(int uid, string name);
-	User(int uid, string psw, string name);
+	User(string uid, string name);
+	User(string uid, string psw, string name);
 	void setName(string name);
 	string getName();
-	void setUID(int uid);
-	int getUID();
+	void setUID(string uid);
+	string getUID();
 	~User();
 };
 

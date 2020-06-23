@@ -1,13 +1,12 @@
 #include "User.h"
 
-
-User::User(int uid, string name)
+User::User(string uid, string name)
 {
 	this->uid = uid;
 	this->name = name;
 }
 
-User::User(int uid, string psw, string name)
+User::User(string uid, string psw, string name)
 {
 	this->uid = uid;
 	this->name = name;
@@ -34,12 +33,12 @@ string User::getName()
 	return this->name;
 }
 
-void User::setUID(int uid)
+void User::setUID(string uid)
 {
 	this->uid = uid;
 }
 
-int User::getUID()
+string User::getUID()
 {
 	return this->uid;
 }

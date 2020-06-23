@@ -12,7 +12,7 @@ LoginResponse::~LoginResponse()
 void LoginResponse::login(std::string uid, std::string fromIP)
 {
 	udb->updateAddr(uid, fromIP);
-	udb->updateState(uid);
+	// udb->updateState(uid);
 }
 
 void LoginResponse::response(int socket, LoginResponseMessage* lrm)
