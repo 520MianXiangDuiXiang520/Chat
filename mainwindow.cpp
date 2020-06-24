@@ -59,11 +59,16 @@ void MainWindow::on_loginButton_clicked()
     User *u = login::auth(this->uid, this->psw);
     if(u)
     {
+        Chat c;
+        c.user = u;
+        c.show();
         qDebug()<<u->getUsername();
     }
     else
     {
-        qDebug()<<"登陆失败！";
+        Dialog d;
+        d.setMessage("登陆失败，用户名或密码错误");
+        d.exec();
     }
 }
 
@@ -101,10 +106,15 @@ void MainWindow::on_registButton_clicked()
     User *u = Regist::auth(this->newUsername, this->newPSW, this->againPSW);
     if(u)
     {
+        Chat c;
+        c.user = u;
+        c.show();
         qDebug()<<u->getUsername();
     }
     else
     {
-        qDebug()<<"登陆失败！";
+        Dialog d;
+        d.setMessage("注册失败，请检查用户名或密码");
+        d.exec();
     }
 }
