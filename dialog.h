@@ -2,7 +2,8 @@
 #define DIALOG_H
 
 #include <QDialog>
-#include <QString>
+#include "user.h"
+#include <QDebug>
 
 namespace Ui {
 class Dialog;
@@ -14,15 +15,10 @@ class Dialog : public QDialog
 
 public:
     explicit Dialog(QWidget *parent = nullptr);
-    void setMessage(QString mes);
     ~Dialog();
-
-private slots:
-    void on_textBrowser_textChanged();
-
+    User *user;
 private:
     Ui::Dialog *ui;
-    QString message;
 };
 
 #endif // DIALOG_H

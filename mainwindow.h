@@ -3,12 +3,12 @@
 
 #include <QMainWindow>
 #include <QString>
+#include <QMessageBox>
+#include <QApplication>
 #include "login.h"
 #include "user.h"
 #include "regist.h"
 #include "dialog.h"
-#include "chat.h"
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

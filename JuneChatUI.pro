@@ -17,7 +17,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    chat.cpp \
     dialog.cpp \
     login.cpp \
     loginmessage.cpp \
@@ -29,7 +28,6 @@ SOURCES += \
     utils.cpp
 
 HEADERS += \
-    chat.h \
     dialog.h \
     login.h \
     loginmessage.h \
@@ -40,7 +38,6 @@ HEADERS += \
     utils.h
 
 FORMS += \
-    chat.ui \
     dialog.ui \
     mainwindow.ui
 
