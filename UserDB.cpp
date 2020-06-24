@@ -63,7 +63,6 @@ User * UserDB::addNewUser(string psw, string name)
 User* UserDB::authUser(string stringUid, string psw)
 {
 	string sql = "SELECT UID, username FROM User WHERE UID= " + stringUid + " AND PSW= '" + psw + "' ;";
-	// cout << sql << endl;
 	int res = mysql_query(conn, sql.c_str());
 	if (!res)
 	{
@@ -72,9 +71,17 @@ User* UserDB::authUser(string stringUid, string psw)
 		if (result)
 		{
 			MYSQL_ROW row = mysql_fetch_row(result);
-			return new User(row[0], row[1]);
+			if(row)
+			{
+				return new User(row[0], row[1]);
+			}
+			    
 		}
 		mysql_free_result(result);
+	}
+	else
+	{
+		cout << "no this user" << endl;
 	}
 	return nullptr;
 }
