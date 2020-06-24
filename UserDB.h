@@ -19,7 +19,7 @@ public:
 	User* addNewUser(string psw, string name);
 	User* authUser(string stringUid, string psw);
 	void updateAddr(string stringIndex, string addr);
-	void updateState(string stringIndex);
+	void updateToken(string uid, string token);
 	~UserDB();
 };
 

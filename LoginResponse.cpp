@@ -26,6 +26,7 @@ void LoginResponse::response(int socket, LoginResponseMessage* lrm)
 		std::string uuid = Utils::GenerateUUID();
 		lrm->createMessage(message, '0', 1, lrm->uid, user->getName(), uuid);
 		cout << "message:" << message << endl;
+		udb->updateToken(lrm->uid, uuid);
 	}
 	else
 	{

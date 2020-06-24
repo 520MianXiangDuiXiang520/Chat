@@ -31,7 +31,7 @@ db=db_name
 dbport=8806
 ```
 
-3. 创建 User 表
+3. 创建 表
 
 ```sql
 CREATE TABLE `User` (
@@ -40,6 +40,14 @@ CREATE TABLE `User` (
   `addr` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   PRIMARY KEY (`UID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `Token` (
+  `uid` char(15) NOT NULL,
+  `token` varchar(36) NOT NULL,
+  `create_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  KEY `uid` (`uid`),
+  CONSTRAINT `uid` FOREIGN KEY (`uid`) REFERENCES `User` (`UID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 

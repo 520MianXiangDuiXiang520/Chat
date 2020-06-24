@@ -11,7 +11,6 @@ UserDB::UserDB()
 	string db;
 	const char ConfigFile[] = "config.conf";
 	Config configSettings(ConfigFile);
-
 	dbport = configSettings.Read("dbport", dbport);
 	ip = configSettings.Read("dbip", ip);
 	user = configSettings.Read("dbuser", user);
@@ -43,7 +42,6 @@ User * UserDB::addNewUser(string psw, string name)
 			MYSQL_RES *result = mysql_store_result(conn);
 			mysql_free_result(result);
 			string sql = "INSERT INTO User(UID, PSW, addr, username) VALUES ('" + uid + "', '" + psw + "' , " + "'0.0.0.0', '" + name + "');";
-			cout << sql << endl;
 			int res = mysql_query(conn, sql.c_str());
 			if (!res)
 			{
@@ -97,10 +95,18 @@ void UserDB::updateAddr(string stringIndex, string addr)
 	}
 }
 
-void UserDB::updateState(string stringIndex)
+void UserDB::updateToken(string uid, string token)
 {
-	// int index = std::stoi(stringIndex);
-	// this->ONLINE[index] = !this->ONLINE[index];
+	time_t now = time(0);
+	tm *ltm = localtime(&now);
+	string snow = std::to_string(1900 + ltm->tm_year) + "-" + std::to_string(ltm->tm_mon) + "-" + std::to_string(ltm->tm_mday) + " " + std::to_string(ltm->tm_hour) + ":" + std::to_string(ltm->tm_min) + ":" + std::to_string(ltm->tm_sec);
+	string sql = "INSERT INTO Token(uid, token, create_time) VALUES ('" + uid + "', '" + token + "', '" + snow + "');";
+	// cout << sql << endl;
+	int res = mysql_query(conn, sql.c_str());
+	if (res)
+	{
+		printf("mysql_query: %s\n", mysql_error(conn));
+	}
 }
 
 
