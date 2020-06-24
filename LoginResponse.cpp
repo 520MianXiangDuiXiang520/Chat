@@ -23,7 +23,8 @@ void LoginResponse::response(int socket, LoginResponseMessage* lrm)
 	{
 		this->login(lrm->uid, lrm->fromIP);
 		std::cout << user->getName() << "login success" << std::endl;
-		lrm->createMessage(message, '0', 1, lrm->uid, user->getName(), "ttttt");
+		std::string uuid = Utils::GenerateUUID();
+		lrm->createMessage(message, '0', 1, lrm->uid, user->getName(), uuid);
 		cout << "message:" << message << endl;
 	}
 	else

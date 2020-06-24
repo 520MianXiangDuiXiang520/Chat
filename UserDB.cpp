@@ -92,8 +92,8 @@ void UserDB::updateAddr(string stringIndex, string addr)
 
 void UserDB::updateState(string stringIndex)
 {
-	int index = std::stoi(stringIndex);
-	this->ONLINE[index] = !this->ONLINE[index];
+	// int index = std::stoi(stringIndex);
+	// this->ONLINE[index] = !this->ONLINE[index];
 }
 
 

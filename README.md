@@ -7,6 +7,20 @@
 ```shell
 sudo apt install mysqlclient
 ```
+
+2. 下载依赖
+
+```shell
+# uuid
+sudo apt-get install uuid-dev
+```
+
+或者
+
+```shell
+./Dependence.sh
+```
+
 2. 修改配置文件，添加 MySQL 服务器的 IP， Port， Pass ward，User, DB等
 
 ```txt

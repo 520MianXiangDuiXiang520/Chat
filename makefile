@@ -1,7 +1,7 @@
 server: User.o Utils.o Config.o UserDB.o LoginResponse.o LoginResponseMessage.o RegistResponseMessage.o RegistResponse.o ResponseMessage.o
-	g++ User.o Utils.o Config.o UserDB.o LoginResponse.o LoginResponseMessage.o RegistResponseMessage.o RegistResponse.o ResponseMessage.o main.cpp -l mysqlclient -o server
+	g++ User.o Utils.o Config.o UserDB.o LoginResponse.o LoginResponseMessage.o RegistResponseMessage.o RegistResponse.o ResponseMessage.o main.cpp -l mysqlclient -l uuid -o server
 Utils.o: Utils.h Utils.cpp
-	g++ -c Utils.cpp
+	g++ -c Utils.cpp -l uuid
 UserDB.o: UserDB.h UserDB.cpp User.o Config.o
 	g++ -c UserDB.cpp -l mysqlclient
 User.o: User.h User.cpp

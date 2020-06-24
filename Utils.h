@@ -14,8 +14,13 @@
 #include <net/if.h>
 #include <signal.h>
 #include <sys/wait.h>
-
-
+#ifdef _WIN32
+#include <Rpc.h>
+#pragma comment(lib, "Rpcrt4.lib")
+#else
+//编译链接时，需要加入 -luuid
+#include <uuid/uuid.h>
+#endif
 
 class Utils
 {
@@ -28,5 +33,7 @@ public:
 	static void errorHandling(std::string mes);
 	static int conn();
 	static void send(int socket, char* message);
+	static std::string GenerateUUID();
+	static std::string GenerateUUIDWithoutDelim();
 };
 

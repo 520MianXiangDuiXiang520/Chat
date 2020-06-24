@@ -55,3 +55,44 @@ void Utils::send(int socket, char* message)
 {
 	write(socket, message, strlen(message));
 }
+
+std::string Utils::GenerateUUID()
+{
+	std::string guid("");
+#ifdef _WIN32
+	UUID uuid;
+	if (RPC_S_OK != UuidCreate(&uuid))
+	{
+		return guid;
+	}
+	char tmp[37] = {0};
+	sprintf_s(tmp, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
+			  uuid.Data1, uuid.Data2, uuid.Data3,
+			  uuid.Data4[0], uuid.Data4[1],
+			  uuid.Data4[2], uuid.Data4[3],
+			  uuid.Data4[4], uuid.Data4[5],
+			  uuid.Data4[6], uuid.Data4[7]);
+	guid.assign(tmp);
+#else
+	uuid_t uuid;
+	char str[50] = {};
+	uuid_generate(uuid);
+	uuid_unparse(uuid, str);
+	guid.assign(str);
+#endif
+	return guid;
+}
+
+std::string Utils::GenerateUUIDWithoutDelim()
+{
+	std::string str = GenerateUUID();
+	std::string uuid;
+	for (auto &i : str)
+	{
+		if ('-' != i)
+		{
+			uuid += i;
+		}
+	}
+	return uuid;
+}
