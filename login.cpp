@@ -7,7 +7,7 @@ login::login()
 
 
 
-User* login::auth(QString uid, QString psw)
+User* login::auth(int conn, QString uid, QString psw)
 {
     if(uid.length() <= 0 || psw.length() <= 0)
         return nullptr;
@@ -22,8 +22,9 @@ User* login::auth(QString uid, QString psw)
     qDebug() << "message:";
     qDebug() << message;
     // 发送给服务端
-    int socket = utils::conn(serverIP);
+    int socket = conn;
     write(socket, message, strlen(message));
+
     qDebug() << "发完了";
     // 接收服务端响应
     char result[MAX_LOGIN_MESSAGE_LEN];
@@ -45,5 +46,7 @@ User* login::auth(QString uid, QString psw)
        }
     }
     //close(socket);
+    memset(message, 0, sizeof(message));
+    memset(result, 0, sizeof(result));
     return nullptr;
 }

@@ -14,7 +14,7 @@ private:
     // static void readMessage(int sock, char *resault);
 public:
     login();
-    static User* auth(QString uid, QString psw);
+    static User* auth(int conn, QString uid, QString psw);
 };
 
 #endif // LOGIN_H

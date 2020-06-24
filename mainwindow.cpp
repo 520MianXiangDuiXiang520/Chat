@@ -55,12 +55,14 @@ MainWindow::~MainWindow()
  */
 void MainWindow::on_loginButton_clicked()
 {
-
-    User *u = login::auth(this->uid, this->psw);
+    QString serverIP = "192.168.1.7";
+    int socket = utils::conn(serverIP);
+    User *u = login::auth(socket, this->uid, this->psw);
     if(u)
     {
         Dialog *d = new Dialog();
         d->user = u;
+        d->conn = socket;
         d->exec();
         qDebug()<<u->getUsername();
     }

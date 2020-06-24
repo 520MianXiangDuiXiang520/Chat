@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "user.h"
+#include "utils.h"
 #include <QDebug>
 
 namespace Ui {
@@ -17,6 +18,10 @@ public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
     User *user;
+    int conn;
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::Dialog *ui;
 };
