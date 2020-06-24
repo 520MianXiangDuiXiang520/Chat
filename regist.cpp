@@ -7,6 +7,8 @@ Regist::Regist()
 
 User* Regist::auth(QString name, QString psw, QString apsw)
 {
+    if(name.length() <= 0 || psw.length() <= 0 || apsw.length() <= 0)
+        return nullptr;
     if(psw != apsw)
     {
         qDebug() << "两次密码不相同";

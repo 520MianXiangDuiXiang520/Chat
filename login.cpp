@@ -9,7 +9,8 @@ login::login()
 
 User* login::auth(QString uid, QString psw)
 {
-    qDebug() << "auth:";
+    if(uid.length() <= 0 || psw.length() <= 0)
+        return nullptr;
     // 封装请求报文
     LoginMessage *lm = new LoginMessage();
     QString localIP = utils::getLocalIP();

@@ -61,7 +61,6 @@ void MainWindow::on_loginButton_clicked()
     {
         Dialog *d = new Dialog();
         d->user = u;
-        qDebug()<<"hahhaja";
         d->exec();
         qDebug()<<u->getUsername();
     }
