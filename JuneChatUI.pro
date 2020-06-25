@@ -19,7 +19,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     datamessage.cpp \
     dialog.cpp \
-    listen.cpp \
     login.cpp \
     loginmessage.cpp \
     main.cpp \
@@ -32,7 +31,6 @@ SOURCES += \
 HEADERS += \
     datamessage.h \
     dialog.h \
-    listen.h \
     login.h \
     loginmessage.h \
     mainwindow.h \

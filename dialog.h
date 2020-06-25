@@ -8,6 +8,8 @@
 #include "utils.h"
 #include "datamessage.h"
 #include <QDebug>
+#include <sys/socket.h>
+
 
 namespace Ui {
 class Dialog;
@@ -22,10 +24,13 @@ public:
     ~Dialog();
     User *user;
     int conn;
-    void setMessage(QString  message);
+    void doListen();
 private slots:
     void on_pushButton_clicked();
+    void setMessage(QString  message);
 
+signals:
+    void showMessage(QString  message);
 
 private:
     Ui::Dialog *ui;

@@ -23,7 +23,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser">
+  <widget class="QTextBrowser" name="replyBrowser">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -33,7 +33,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser_2">
+  <widget class="QTextBrowser" name="sendBrowser">
    <property name="geometry">
     <rect>
      <x>750</x>

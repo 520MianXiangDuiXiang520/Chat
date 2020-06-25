@@ -39,24 +39,19 @@ MainWindow::MainWindow(QWidget *parent)
     label->setText("Power By QT");
     statuBar->addPermanentWidget(label);
     setStatusBar(statuBar);
-
-
     ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
 {
+    qDebug() << "Bye, Bye";
+//    delete this->d;
     delete ui;
 }
 
-void MainWindow::clean_child_process(int sig_number)
-{
-    pid_t pid;
-    int status;
-    pid = waitpid(-1, &status, WNOHANG);
-    qDebug() << "removed proc id";
 
-}
+
+
 
 /**
  * 登录
@@ -67,27 +62,14 @@ void MainWindow::on_loginButton_clicked()
     QString serverIP = "192.168.1.7";
     int socket = utils::conn(serverIP);
     User *u = login::auth(socket, this->uid, this->psw);
-    // 处理僵尸进程
-    struct sigaction act;
-    act.sa_handler = clean_child_process;
-    sigemptyset(&act.sa_mask);
-    act.sa_flags = 0;
-    int state = sigaction(SIGCHLD, &act, 0);
     if(u)
     {
         Dialog *d = new Dialog();
         d->user = u;
         d->conn = socket;
-        if(fork() == 0)
-        {
-            qDebug() << "紫荆城";
-            Listen::doListen(d);
-        }
-        else
-        {
-            d->exec();
-        }
-
+        d->setAttribute(Qt::WA_QuitOnClose);
+        d->exec();
+        d->close();
     }
     else
     {
@@ -129,9 +111,9 @@ void MainWindow::on_registButton_clicked()
     User *u = Regist::auth(this->newUsername, this->newPSW, this->againPSW);
     if(u)
     {
-        Dialog d;
-        d.user = u;
-        d.exec();
+        Dialog *d = new Dialog();
+        d->user = u;
+        d->exec();
         qDebug()<<u->getUsername();
     }
     else

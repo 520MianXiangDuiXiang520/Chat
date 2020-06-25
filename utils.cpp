@@ -25,6 +25,13 @@ QSqlDatabase utils::connMysql()
     return d;
 }
 
+int utils::getClientSocket(int serv_sock)
+{
+    socklen_t adr_sz;
+    struct sockaddr_in clnt_adr;
+    adr_sz = sizeof(clnt_adr);
+    return accept(serv_sock, (struct sockaddr *)&clnt_adr, &adr_sz);
+}
 
 QString utils::getLocalIP()
 {

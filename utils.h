@@ -39,6 +39,7 @@ public:
     static void read_childproc(int sig);
     static QSqlDatabase connMysql();
     static QString getLocalIP();
+    static int getClientSocket(int serv_sock);
 };
 
 #endif // UTILS_H
