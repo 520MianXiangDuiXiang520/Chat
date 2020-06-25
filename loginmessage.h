@@ -16,6 +16,7 @@ protected:
     void setTo(char * message, QString toIP);
     void setPSW(char * message, QString psw);
     void setUID(char * message, QString uid);
+    void setElse(char * message, QString e);
     void setSize(char *message);
     QString findString(char *message);
     static QString getLenMessage(char *message, int offset);

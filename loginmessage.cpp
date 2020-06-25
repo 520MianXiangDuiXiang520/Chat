@@ -99,6 +99,13 @@ void LoginMessage::setUID(char * message, QString uid)
     this->size += uid.length() + 1;
 }
 
+void LoginMessage::setElse(char *message, QString e)
+{
+    int offset = this->size;
+    setLenMessage(message, e, offset);
+    this->size += e.length() + 1;
+}
+
 void LoginMessage::setSize(char *message)
 {
     int offset = this->size;

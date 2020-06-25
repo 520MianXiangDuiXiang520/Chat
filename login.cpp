@@ -38,7 +38,9 @@ User* login::auth(int conn, QString uid, QString psw)
        if(lm->findWork(result) == 1)
        {
            lm->findData(result);
-           return new User(lm->UID, lm->Name);
+           User *newUser = new User(lm->UID, lm->Name);
+           newUser->token = lm->Token;
+           return newUser;
        }
        else
        {

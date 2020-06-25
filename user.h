@@ -7,6 +7,7 @@
 class User
 {
 public:
+    QString token;
     User(QString uid, QString username);
     QString getUID();
     void setUID(QString uid);

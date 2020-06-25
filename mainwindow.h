@@ -9,6 +9,7 @@
 #include "user.h"
 #include "regist.h"
 #include "dialog.h"
+#include "listen.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -43,5 +44,6 @@ private:
     QString newUsername;
     QString newPSW;
     QString againPSW;
+    static void clean_child_process(int sig_number);
 };
 #endif // MAINWINDOW_H

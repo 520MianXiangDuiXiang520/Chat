@@ -58,8 +58,49 @@ int utils::conn(QString connIP)
     return sock;
 }
 
+void utils::read_childproc(int sig)
+{
+    pid_t pid;
+    int status;
+    pid = waitpid(-1, &status, WNOHANG);
+    printf("removed proc id: %d \n", pid);
+}
+
+int utils::conn()
+{
+    int serv_sock;
+    struct sockaddr_in serv_adr;
+    struct sigaction act;
+    int state;
+
+    act.sa_handler = utils::read_childproc;
+    sigemptyset(&act.sa_mask);
+    act.sa_flags = 0;
+    state = sigaction(SIGCHLD, &act, 0);
+    serv_sock = socket(PF_INET, SOCK_STREAM, 0);
+    memset(&serv_adr, 0, sizeof(serv_adr));
+    serv_adr.sin_family = AF_INET;
+    serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
+    serv_adr.sin_port = htons(atoi(SPORT));
+
+    if (bind(serv_sock, (struct sockaddr*) & serv_adr, sizeof(serv_adr)) == -1)
+    {
+        errorHandling("bind() error");
+        return -1;
+    }
+
+
+    if (listen(serv_sock, 6) == -1)
+    {
+        errorHandling("listen() error");
+        return -1;
+    }
+
+//    printf("%d", &serv_sock);
+    return serv_sock;
+}
+
 void utils::errorHandling(QString mes)
 {
     qDebug()<<mes;
-    exit(1);
 }
