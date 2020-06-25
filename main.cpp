@@ -9,6 +9,7 @@
 #include "UserDB.h"
 #include "LoginResponse.h"
 #include "RegistResponse.h"
+#include "Forwarding.h"
 #define MAX_LOGIN_MESSAGE_LEN 128
 
 int main()
@@ -47,6 +48,7 @@ int main()
 				{
 					if (work == 1)
 					{
+						// 登录请求数据包
 						LoginResponseMessage* lrm = new LoginResponseMessage();
 						lrm->getData(result);
 						LoginResponse* lr = new LoginResponse();
@@ -54,16 +56,30 @@ int main()
 					}
 					else if (work == 2)
 					{
+						// 注册请求数据包
 						RegistResponseMessage* rrm = new RegistResponseMessage();
 						rrm->getData(result);
 						RegistResponse* rr = new RegistResponse();
 						rr->response(clnt_sock, rrm);
-					
+					}
+					else if (work == 3)
+					{
+						// 登出请求
+					}
+					else if (work == 4)
+					{
+						// 发送消息的数据包
+						DataMessage *dm = new DataMessage();
+						dm->getData(result);
+						cout << "get Message: " << dm->message_data << endl;
+						Forwarding *forward = new Forwarding();
+						forward->doForward(dm);
+						// 转发
 					}
 				}
 				else if (type == '1')
 				{
-
+					// 心跳包 
 				}
 			}
 			//close(clnt_sock);
@@ -75,8 +91,5 @@ int main()
 		}
 	}
 	//close(serv_sock);
-	/*return nullptr;
-	LoginResponse* lr = new LoginResponse();
-	lr->response();*/
 	return 0;
 }

@@ -1,5 +1,5 @@
-server: User.o Utils.o Config.o UserDB.o LoginResponse.o LoginResponseMessage.o RegistResponseMessage.o RegistResponse.o ResponseMessage.o
-	g++ User.o Utils.o Config.o UserDB.o LoginResponse.o LoginResponseMessage.o RegistResponseMessage.o RegistResponse.o ResponseMessage.o main.cpp -l mysqlclient -l uuid -o server
+server: User.o Utils.o Config.o UserDB.o LoginResponse.o LoginResponseMessage.o RegistResponseMessage.o RegistResponse.o ResponseMessage.o Forwarding.o DataMessage.o
+	g++ User.o Utils.o Config.o UserDB.o LoginResponse.o LoginResponseMessage.o RegistResponseMessage.o RegistResponse.o ResponseMessage.o Forwarding.o DataMessage.o main.cpp -l mysqlclient -l uuid -o server
 Utils.o: Utils.h Utils.cpp
 	g++ -c Utils.cpp -l uuid
 UserDB.o: UserDB.h UserDB.cpp User.o Config.o
@@ -18,5 +18,9 @@ ResponseMessage.o: ResponseMessage.h ResponseMessage.cpp
 	g++ -c ResponseMessage.cpp
 Config.o: Config.h Config.cpp
 	g++ -c Config.cpp
+DataMessage.o: ResponseMessage.o DataMessage.h DataMessage.cpp
+	g++ -c DataMessage.cpp
+Forwarding.o: DataMessage.o Forwarding.h Forwarding.cpp
+	g++ -c Forwarding.cpp
 clear:
 	rm *.o

@@ -109,9 +109,18 @@ void UserDB::updateToken(string uid, string token)
 	}
 }
 
+bool UserDB::isOnLine(string uid, string token)
+{
+    string sql = "SELECT create_time FROM Token WHERE UID = '" + uid +
+	"' AND token = '" + token + "' ;";
+	int a = mysql_query(conn, sql.c_str());
+	// 释放结果集
+	MYSQL_RES *result = mysql_store_result(conn);
+	mysql_free_result(result);
+	return !a;
+}
 
-
-UserDB::~UserDB()
+	UserDB::~UserDB()
 {
 	mysql_close(conn);
 }

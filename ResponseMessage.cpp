@@ -89,7 +89,23 @@ std::string ResponseMessage::getNewName(char* message)
 	return result;
 }
 
-char* ResponseMessage::setType(char* message, char type)
+std::string ResponseMessage::getMessageData(char *message)
+{
+	int len = (int)message[this->size];
+	std::string result = getLenMessage(message, this->size);
+	this->size += len + 1;
+	return result;
+}
+
+std::string ResponseMessage::getToken(char *message)
+{
+	int len = (int)message[this->size];
+	std::string result = getLenMessage(message, this->size);
+	this->size += len + 1;
+	return result;
+}
+
+	char *ResponseMessage::setType(char *message, char type)
 {
 	message[0] = type;
 	return message;
@@ -151,3 +167,11 @@ void ResponseMessage::createMessage(char* message, char type, int work)
 	this->setWork(message, work);
 }
 
+void ResponseMessage::createMessage(char *message, char type, int work, string fromID, string data)
+{
+	this->len = 2;
+	this->setType(message, type);
+	this->setWork(message, work);
+	this->setData(message, fromID);
+	this->setData(message, data);
+}

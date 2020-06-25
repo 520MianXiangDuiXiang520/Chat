@@ -20,6 +20,7 @@ public:
 	User* authUser(string stringUid, string psw);
 	void updateAddr(string stringIndex, string addr);
 	void updateToken(string uid, string token);
+	bool isOnLine(string uid, string token);
 	~UserDB();
 };
 

@@ -35,7 +35,6 @@ int Utils::conn()
 	act.sa_handler = Utils::read_childproc;
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = 0;
-	// �ӽ�����ֹ��ִ��read_childproc
 	state = sigaction(SIGCHLD, &act, 0);
 	serv_sock = socket(PF_INET, SOCK_STREAM, 0);
 	memset(&serv_adr, 0, sizeof(serv_adr));
@@ -49,6 +48,22 @@ int Utils::conn()
 		errorHandling("listen() error");
 	printf("%d", &serv_sock);
 	return serv_sock;
+}
+
+int Utils::connByIP(string connIP)
+{
+	int sock;
+	struct sockaddr_in serv_adr;
+
+	sock = socket(PF_INET, SOCK_STREAM, 0);
+	memset(&serv_adr, 0, sizeof(serv_adr));
+	serv_adr.sin_family = AF_INET;
+	serv_adr.sin_addr.s_addr = inet_addr(connIP.c_str());
+	serv_adr.sin_port = htons(atoi(SPORT));
+
+	if (connect(sock, (struct sockaddr *)&serv_adr, sizeof(serv_adr)) == -1)
+		errorHandling("connect() error!");
+	return sock;
 }
 
 void Utils::send(int socket, char* message)
