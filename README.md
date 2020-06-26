@@ -1,6 +1,7 @@
 <a href="https://gitmoji.carloscuesta.me">
   <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
 </a>
+
 # Chat
 
 一个基于 QT 和 C++ 网络编程的简单的即时通讯程序
